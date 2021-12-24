@@ -38,7 +38,8 @@ class RoomAdmin(admin.ModelAdmin):
 class StudentAdmin(admin.ModelAdmin):
     list_display = ('roll_num', 'name', 'room', 'mail',
                     'student_contact_num', 'guardian_contact_num', 'gender')
-    search_fields = ['roll_num', 'first_name', 'last_name']
+    search_fields = ['roll_num__username', 'first_name', 'last_name', 'room__room_num']
+    list_filter = ('room__hostel__hostel_number', 'room__wing', 'room__floor')
     raw_id_fields = ('room', 'roll_num', )
 
     def name(self, obj):
