@@ -40,11 +40,11 @@ def profile(request):
 
     if request.method == 'POST':
         if request.POST['password1'] == request.POST['password2']:
-            print(request.POST['password1'])
             user = User.objects.get(username=request.user.username)
             user.set_password(request.POST['password1'])
             user.save()
             messages.success(request, "Password updated")
+            return render(request, 'signin.html', {})
     user = Student.objects.get(roll_num=request.user.id)
     context = {'roll_num': user.roll_num, 'name':str(user.first_name) + ' ' + str(user.last_name), 'mail':user.mail, 'student_contact_num':user.student_contact_num, 'guardian_contact_num':user.guardian_contact_num, 'room':user.room}
     print(context)

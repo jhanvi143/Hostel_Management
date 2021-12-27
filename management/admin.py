@@ -3,7 +3,7 @@ from django.contrib.auth.models import Group
 
 from .models import *
 
-# from django.db.models import F
+from django.db.models import F
 admin.site.site_header = 'LNMIIT Hostel Admin Panel'
 admin.site.unregister(Group)
 
@@ -21,13 +21,14 @@ def update_status():
 
 @admin.register(Hostel)
 class HostelAdmin(admin.ModelAdmin):
+    # pass
     list_display = ('hostel_number', 'warden')
 
 
 @admin.register(Room)
 class RoomAdmin(admin.ModelAdmin):
     list_display = ('hostel_number', 'wing', 'floor', 'room_num', 'capacity', 'status')
-    list_filter = ('capacity', 'status', 'wing', 'hostel', 'floor')
+    list_filter = ('capacity', 'status', 'hostel', 'wing', 'floor')
     search_fields = ['room_num']
 
     def hostel_number(self, obj):
@@ -75,7 +76,7 @@ class FeedbackAdmin(admin.ModelAdmin):
 
 @admin.register(Complaint)
 class ComplaintAdmin(admin.ModelAdmin):
-    list_display = ('room', 'complaint', 'date')
+    list_display = ('student', 'room', 'complaint', 'date')
     date_hierarchy = 'date'
 
     def room(self, obj):
@@ -93,7 +94,7 @@ class ComplaintAdmin(admin.ModelAdmin):
 
 @admin.register(ChangeRoom)
 class ChangeRoomAdmin(admin.ModelAdmin):
-    list_display = ('room', 'reason', 'date')
+    list_display = ('student', 'room', 'reason', 'date')
     date_hierarchy = 'date'
 
     def room(self, obj):
@@ -111,5 +112,7 @@ class ChangeRoomAdmin(admin.ModelAdmin):
 
 @admin.register(Attendance)
 class AttendanceAdmin(admin.ModelAdmin):
-    list_display = ('date', 'xlSheet')
+    list_display = ('date', 'txtReport')
     date_hierarchy = 'date'
+
+         
