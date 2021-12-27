@@ -43,7 +43,7 @@ def profile(request):
             user = User.objects.get(username=request.user.username)
             user.set_password(request.POST['password1'])
             user.save()
-            messages.success(request, "Password updated")
+            messages.success(request, "Password updated.\n Log in again with new password")
             return render(request, 'signin.html', {})
     user = Student.objects.get(roll_num=request.user.id)
     context = {'roll_num': user.roll_num, 'name':str(user.first_name) + ' ' + str(user.last_name), 'mail':user.mail, 'student_contact_num':user.student_contact_num, 'guardian_contact_num':user.guardian_contact_num, 'room':user.room}
@@ -62,6 +62,7 @@ def roomChangeRequest(request):
         reason.reason = request.POST['reason']
         reason.student = Student.objects.get(roll_num=request.user.id)
         reason.save()
+        messages.success(request, "Request submitted succesfully.")
 
     return render(request, 'student/room_change_request.html', {})
 
@@ -74,6 +75,7 @@ def feedback(request):
         feedback.feedback = request.POST['feedback']
         feedback.hostel = Student.objects.get(roll_num=request.user.id).room.hostel
         feedback.save()
+        messages.success(request, "Feedback submitted succesfully.")
 
     return render(request, 'student/feedback.html', {})
 
@@ -86,6 +88,7 @@ def complaint(request):
         complaint.complaint = request.POST['complaint']
         complaint.student = Student.objects.get(roll_num=request.user.id)
         complaint.save()
+        messages.success(request, "Complaint registered succesfully.")
 
     return render(request, 'student/complaint.html', {})
 

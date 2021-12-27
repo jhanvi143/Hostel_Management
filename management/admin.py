@@ -21,7 +21,6 @@ def update_status():
 
 @admin.register(Hostel)
 class HostelAdmin(admin.ModelAdmin):
-    # pass
     list_display = ('hostel_number', 'warden')
 
 
