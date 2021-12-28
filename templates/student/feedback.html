@@ -117,10 +117,13 @@
 
 
 <div class="contact-form">
-      <h2 >Feedback</h2>
+      	<h2 >Feedback</h2>
+	 	{% for message in messages %}
+		<div class="alert alert-danger">{{message}}</div>
+		{% endfor %}	
         <form method="post" action="{% url 'management:feedback' %}">
         {% csrf_token %}
-      <p> <textarea class="form-control" rows="4" cols="50" id="feedback" name="feedback" style=" resize: none" placeholder="Type your feedback here ..." required></textarea> </p>
+      	<p> <textarea class="form-control" rows="4" cols="50" id="feedback" name="feedback" style=" resize: none" placeholder="Type your feedback here ..." required></textarea> </p>
         <br/>
     <input name="submit" value="submit" type="submit" class="btn btn-danger btn-block">
     </form>

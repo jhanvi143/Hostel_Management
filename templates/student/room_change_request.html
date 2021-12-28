@@ -118,6 +118,9 @@
 
 <div class="contact-form">
       <h2 >Apply Room change</h2>
+	  {% for message in messages %}
+		<div class="alert alert-danger">{{message}}</div>
+		{% endfor %}
     <form method="post" action="{% url 'management:roomChangeRequest' %}">
         {% csrf_token %}
       <p> <textarea class="form-control" rows="4" cols="50" id="reason" name="reason" style=" resize: none" placeholder="Type your reason for room change here ..." required></textarea> </p>

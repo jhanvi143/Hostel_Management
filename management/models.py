@@ -57,5 +57,5 @@ class ChangeRoom(models.Model):
     date = models.DateField(default=timezone.now)
 
 class Attendance(models.Model):
-    xlSheet = models.FileField(upload_to='static/AttendanceRecords', null=False)
+    txtReport = models.FileField(upload_to='static/AttendanceRecords', null=False)
     date = models.DateField(null=False)

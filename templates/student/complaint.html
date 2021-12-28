@@ -120,7 +120,9 @@
 
 <div class="contact-form">
       <h2 >Complaints</h2>
-
+	  {% for message in messages %}
+	  <div class="alert alert-danger">{{message}}</div>
+	  {% endfor %}
       <form method="post" action="{% url 'management:complaint' %}">
         {% csrf_token %}
       <p> <textarea class="form-control" rows="4" cols="50" id="complaint" name="complaint" style=" resize: none" placeholder="Type your complaint here ..." required></textarea> </p>
